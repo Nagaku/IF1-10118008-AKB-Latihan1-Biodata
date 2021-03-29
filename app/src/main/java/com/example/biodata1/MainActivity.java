@@ -1,6 +1,7 @@
 package com.example.biodata1;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.core.content.res.ResourcesCompat;
 
 import android.graphics.Typeface;
@@ -17,15 +18,24 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().hide();
         setContentView(R.layout.activity_main);
 
+        CardView cv = findViewById(R.id.profile1);
+        cv.setBackground(getResources().getDrawable(R.drawable.ppgrad));
+
         Typeface tf = ResourcesCompat.getFont(
                 this,
                 R.font.nunito);
-        TextView txt1 = findViewById(R.id.text1);
-        TextView txt2 = findViewById(R.id.text2);
-        TextView txt3 = findViewById(R.id.text3);
-        txt1.setTypeface(tf);
-        txt2.setTypeface(tf);
-        txt3.setTypeface(tf);
+
+        TextView[] txt = new TextView[26];
+
+        for(int i = 1; i <= 26; i++) {
+            String id = (String)("text" + i);
+            int idd = getResources().getIdentifier(id, "id", getPackageName());
+            txt[i-1] = ((TextView) findViewById(idd));
+        }
+
+        for(int i = 1; i <= 26; i++) {
+            txt[i-1].setTypeface(tf);
+        }
 
     }
 }
